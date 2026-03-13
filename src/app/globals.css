@@ -135,3 +135,22 @@
     @apply scroll-smooth font-sans;
   }
 }
+
+
+@layer utilities {
+  .word-animate {
+    opacity: 0;
+    animation: wordFade 0.4s ease-out forwards;
+  }
+}
+
+@keyframes wordFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
