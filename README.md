@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Blog — Next.js + Contentful Mini Marketing Site
 
-## Getting Started
+> **Live URL:** [paste your Vercel URL here]
+>
+> **GitHub Repo:** [paste your repo URL here]
 
-First, run the development server:
+## Tech Stack
+
+| Technology | Version |
+|---|---|
+| Next.js (App Router) | 16.1.6 |
+| TypeScript | 5.x (strict mode) |
+| Tailwind CSS | 4.x |
+| Contentful CMS | 11.x |
+| shadcn/ui | Card, Button, Badge |
+| Vercel | Hosting & deployment |
+
+## Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home page — hero section + latest 3 post preview cards |
+| `/blog` | Blog list — responsive 2-column grid of all posts with badges |
+| `/blog/[slug]` | Blog detail — full post with cover image, rich text, and SEO metadata |
+
+## Setup
+
+### 1. Clone the repository
+
+```bash
+git clone <your-repo-url>
+cd my-site
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env.local` file in the project root:
+
+```
+CONTENTFUL_SPACE_ID=your_space_id
+CONTENTFUL_ACCESS_TOKEN=your_access_token
+```
+
+### 4. Contentful content model
+
+Create a content type called **blogpost** with these fields:
+
+| Field | Type |
+|---|---|
+| `title` | Short text |
+| `slug` | Short text |
+| `excerpt` | Long text |
+| `content` | Rich text |
+| `coverImage` | Media (single image) |
+| `publishDate` | Date & time |
+
+### 5. Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+my-site/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx              # Root layout with sticky navbar
+│   │   ├── page.tsx                # Home page
+│   │   ├── globals.css             # Tailwind + shadcn/ui + typography
+│   │   └── blog/
+│   │       ├── page.tsx            # Blog list page
+│   │       ├── loading.tsx         # Skeleton loading state
+│   │       └── [slug]/
+│   │           └── page.tsx        # Blog detail page (SSG + ISR)
+│   ├── components/
+│   │   ├── RichTextRenderer.tsx    # Contentful rich text renderer
+│   │   └── ui/                     # shadcn/ui components
+│   │       ├── badge.tsx
+│   │       ├── button.tsx
+│   │       └── card.tsx
+│   └── lib/
+│       ├── contentful.ts           # Contentful client + data fetching
+│       ├── types.ts                # Domain types (BlogPost, CoverImage)
+│       └── utils.ts                # shadcn/ui utility (cn)
+├── .env.local                      # Environment variables (not committed)
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
 
-## Learn More
+## Deploying to Vercel
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to GitHub.
+2. Go to [vercel.com](https://vercel.com) and import the repository.
+3. Set the **Root Directory** to `my-site` (if the repo root is the parent folder).
+4. Add environment variables in the Vercel dashboard:
+   - `CONTENTFUL_SPACE_ID`
+   - `CONTENTFUL_ACCESS_TOKEN`
+5. Click **Deploy**.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+All pages use `revalidate = 60` (ISR), so content updates in Contentful appear within 60 seconds without redeploying.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Features Checklist
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [x] Next.js App Router with TypeScript strict mode
+- [x] Contentful CMS integration (all fetching in `lib/contentful.ts`)
+- [x] Domain types mapped from Contentful responses
+- [x] Home page with hero section and latest 3 post cards
+- [x] Blog list page with responsive grid and empty state
+- [x] Blog detail page with rich text rendering and cover image
+- [x] `generateStaticParams()` for static generation of blog posts
+- [x] `generateMetadata()` for SEO on blog detail
+- [x] `notFound()` for missing slugs
+- [x] ISR with `revalidate = 60` on all data-fetching pages
+- [x] shadcn/ui components (Card, Button, Badge)
+- [x] `next/image` for optimized images
+- [x] Tailwind CSS typography plugin for prose styling
+- [x] Skeleton loading state for blog list
+- [x] Sticky navbar with site navigation
+- [x] Deployed on Vercel
