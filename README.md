@@ -2,7 +2,7 @@
 
 > **Live URL:** [paste your Vercel URL here]
 >
-> **GitHub Repo:** [paste your repo URL here]
+> **GitHub Repo:** [(https://github.com/Gunnjainn/Contentful-driven-marketing-website)]
 
 ## Tech Stack
 
