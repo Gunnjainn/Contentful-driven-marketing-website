@@ -1,8 +1,8 @@
 # My Blog — Next.js + Contentful Mini Marketing Site
 
-> **Live URL:** [paste your Vercel URL here]
+> **Live URL:** (https://contentful-driven-marketing-website.vercel.app/)
 >
-> **GitHub Repo:** [(https://github.com/Gunnjainn/Contentful-driven-marketing-website)]
+> **GitHub Repo:** (https://github.com/Gunnjainn/Contentful-driven-marketing-website)
 
 ## Tech Stack
 
@@ -28,8 +28,7 @@
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
-cd my-site
+git clone <(https://github.com/Gunnjainn/Contentful-driven-marketing-website)>
 ```
 
 ### 2. Install dependencies
@@ -68,6 +67,9 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+
+
+
 ## Project Structure
 
 ```
@@ -97,34 +99,3 @@ my-site/
 ├── tsconfig.json
 └── next.config.ts
 ```
-
-## Deploying to Vercel
-
-1. Push your code to GitHub.
-2. Go to [vercel.com](https://vercel.com) and import the repository.
-3. Set the **Root Directory** to `my-site` (if the repo root is the parent folder).
-4. Add environment variables in the Vercel dashboard:
-   - `CONTENTFUL_SPACE_ID`
-   - `CONTENTFUL_ACCESS_TOKEN`
-5. Click **Deploy**.
-
-All pages use `revalidate = 60` (ISR), so content updates in Contentful appear within 60 seconds without redeploying.
-
-## Features Checklist
-
-- [x] Next.js App Router with TypeScript strict mode
-- [x] Contentful CMS integration (all fetching in `lib/contentful.ts`)
-- [x] Domain types mapped from Contentful responses
-- [x] Home page with hero section and latest 3 post cards
-- [x] Blog list page with responsive grid and empty state
-- [x] Blog detail page with rich text rendering and cover image
-- [x] `generateStaticParams()` for static generation of blog posts
-- [x] `generateMetadata()` for SEO on blog detail
-- [x] `notFound()` for missing slugs
-- [x] ISR with `revalidate = 60` on all data-fetching pages
-- [x] shadcn/ui components (Card, Button, Badge)
-- [x] `next/image` for optimized images
-- [x] Tailwind CSS typography plugin for prose styling
-- [x] Skeleton loading state for blog list
-- [x] Sticky navbar with site navigation
-- [x] Deployed on Vercel
