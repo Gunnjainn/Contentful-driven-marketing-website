@@ -70,7 +70,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## Contentful Model
 
 ![Contentful Model](contentful-model.png)
-!(contentful-model2.png)
+![](contentful-model2.png)
 
 ## Project Structure
 
